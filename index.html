@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+var flag = 1;
+
+function t() {
+  var n = document.getElementById("N");
+  // El contenedor tiene backdrop-filter: sacamos el botón al <body>
+  // para que "fixed" se calcule respecto a la pantalla completa.
+  if (n.parentNode !== document.body) { document.body.appendChild(n); }
+
+  // Las coordenadas viven en el CSS (media queries); aquí solo cambiamos la clase.
+  n.classList.add("salto");
+  n.classList.remove("pos1", "pos2", "pos3");
+  n.classList.add("pos" + flag);
+
+  flag = flag + 1;
+  if (flag == 4) { flag = 1; }
+}
+
+function al() {
+  /* alert(" Gracias , te quiero mucho, te prometo que no te vas a arrepentir!") */
+  // Cambia el gato triste por el feliz
+  var gato = document.getElementById("gato");
+  gato.src = "gato_feliz.gif";
+  gato.alt = "gato feliz";
+
+  // Cambia los textos
+  document.getElementById("titulo").textContent = " Gracias por perdonarme";
+  document.getElementById("mensaje").textContent = "Prometo cuidar mucho de nuestra amistad";
+
+  // Oculta los botones
+  document.getElementById("N").style.display = "none";
+  document.getElementById("Y").style.display = "none";
+}
+</script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<section>
+  <article class="container">
+
+    <img id="gato" src="gato_triste.gif" alt="gato triste">
+    <h1 id="titulo"> Me perdonas? </h1>
+    <p id="mensaje"> Perdoname , por no saber manejar la situacion , tu amistad me importa mucho Rebeca, tanto que estoy dispuesto a todo.</p>
+
+    <div class="botones">
+      <div id="N">
+        <input type="button" value="NO" onmouseover="t()" ontouchstart="event.preventDefault(); t()" />
+      </div>
+      <div id="Y">
+        <input type="button" value="SI" onclick="al()" />
+      </div>
+    </div>
+
+  </article>
+</section>
+
+</body>
+</html>
